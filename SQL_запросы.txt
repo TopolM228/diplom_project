@@ -1,0 +1,40 @@
+#Запрос1:
+SELECT c.login, COUNT(o.id) AS quantity FROM "Couriers" AS c LEFT JOIN "Orders" AS o ON c.id = o."courierId" AND o."inDelivery" = true GROUP BY c.login;
+
+  login  | quantity
+---------+----------
+ ThirdC  |       10
+ FirstC  |        6
+ SecondC |        4
+
+#Запрос2
+SELECT track, CASE WHEN finished = true THEN 2 WHEN cancelled = true THEN -1 WHEN "inDelivery" = true THEN 1 ELSE 0 END AS order_status FROM "Orders";
+
+ track  | order_status
+--------+--------------
+ 255054 |            1
+ 255054 |            1
+  75783 |            1
+  75783 |            1
+ 676258 |            1
+ 676258 |            1
+ 728083 |            1
+ 728083 |            1
+  63109 |            1
+  63109 |            1
+ 123906 |            1
+ 123906 |            1
+ 479785 |            1
+ 479785 |            1
+ 609959 |            1
+ 329437 |            2
+ 353208 |            2
+ 353208 |            2
+ 329437 |            2
+ 609959 |            2
+ 849350 |           -1
+ 998778 |           -1
+ 908393 |           -1
+ 814764 |            0
+ 787720 |            0
+ 437575 |            0
